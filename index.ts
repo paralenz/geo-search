@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { URL } from 'url'
 import fetch from 'node-fetch'
 
 const OK = 200
@@ -49,11 +48,8 @@ export default class GeoSearch {
     if (!input) {
       throw new Error('Missing input')
     }
-    const url = new URL(this.autoCompleteUrl)
-    url.searchParams.append('language', this.config.language)
-    url.searchParams.append('input', input)
 
-    const response = await this.fetch(url)
+    const response = await this.fetch(`${this.autoCompleteUrl}?language=${this.config.language}&input=${input}`)
 
     return this.formatAutoCompleteResponse(response.predictions)
   }
@@ -62,10 +58,8 @@ export default class GeoSearch {
     if (!placeId) {
       throw new Error('Missing placeId')
     }
-    const url = new URL(this.placeUrl)
-    url.searchParams.append('placeid', placeId)
 
-    const { result } = await this.fetch(url)
+    const { result } = await this.fetch(`${this.autoCompleteUrl}?placeId=${placeId}`)
     const { geometry } = result
 
     return {
@@ -77,14 +71,12 @@ export default class GeoSearch {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private fetch = async (url: URL): Promise<any> => {
+  private fetch = async (url: string): Promise<any> => {
     if (!this.apiKey) {
       throw new Error('Missing apiKey')
     }
 
-    url.searchParams.append('key', this.apiKey)
-
-    const response = await fetch(url.toString())
+    const response = await fetch(`${url}&key=${this.apiKey}`)
 
     if (response?.status !== OK) {
       throw new Error('No result')

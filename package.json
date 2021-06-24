@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Utility class to easily perform google search",
   "main": "dist/index.js",
-  "license": "MIT",
   "scripts": {
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,5 +18,23 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.1"
-  }
+  },
+  "keywords": [
+    "autocomplete",
+    "place",
+    "google",
+    "paralenz"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "homepage": "https://github.com/paralenz/geo-search",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paralenz/geo-search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/paralenz/geo-search/issues"
+  },
+  "license": "ISC"
 }
