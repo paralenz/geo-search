@@ -1,12 +1,15 @@
 {
   "name": "@paralenz/geo-search",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Utility class to easily perform google search",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "build": "tsc --esModuleInterop"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --esModuleInterop",
+    "postversion": "sh ./scripts/post-version.sh",
+    "prepublishOnly": "sh ./scripts/pre-publish.sh"
   },
   "devDependencies": {
     "@paralenz/eslint-config-typescript-react": "^0.0.5",
