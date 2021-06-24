@@ -1,6 +1,6 @@
 {
   "name": "@paralenz/geo-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility class to easily perform google search",
   "main": "dist/index.js",
   "scripts": {
