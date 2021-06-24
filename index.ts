@@ -59,7 +59,7 @@ export default class GeoSearch {
       throw new Error('Missing placeId')
     }
 
-    const { result } = await this.fetch(`${this.autoCompleteUrl}?placeId=${placeId}`)
+    const { result } = await this.fetch(`${this.placeUrl}?placeId=${placeId}`)
     const { geometry } = result
 
     return {
