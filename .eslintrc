@@ -1,0 +1,3 @@
+{ 
+    "extends": "@paralenz/eslint-config-typescript-react"
+  }

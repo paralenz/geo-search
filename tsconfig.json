@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "CommonJS",
+        "declaration": true,
+        "outDir": "./dist",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "noEmit": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "inlineSourceMap": true,
+        "resolveJsonModule": true,
+        "lib": [
+            "esnext"
+        ],
+        "moduleResolution": "node",
+    },
+    "include": [
+        "index.ts"
+    ],
+    "exclude": [
+        "node_modules/**",
+        "**/__tests__/*"
+    ]
+}
