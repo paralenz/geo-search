@@ -36,9 +36,6 @@ const DEFAULT_CONFIG: Config = {
 export const useGeoSearch = (apiKey: ApiKey, config: Config = DEFAULT_CONFIG) => new GeoSearch(apiKey, config)
 
 export default class GeoSearch {
-  private autoCompleteUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
-  private placeUrl = 'https://maps.googleapis.com/maps/api/place/details/json'
-
   constructor (
     private readonly apiKey: ApiKey,
     private readonly config: Config = DEFAULT_CONFIG
@@ -49,7 +46,8 @@ export default class GeoSearch {
       throw new Error('Missing input')
     }
 
-    const response = await this.fetch(`${this.autoCompleteUrl}?language=${this.config.language}&input=${input}`)
+    // eslint-disable-next-line max-len
+    const response = await this.fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?language=${this.config.language}&input=${input}`)
 
     return this.formatAutoCompleteResponse(response.predictions)
   }
@@ -59,14 +57,17 @@ export default class GeoSearch {
       throw new Error('Missing placeId')
     }
 
-    const { result } = await this.fetch(`${this.placeUrl}?placeId=${placeId}`)
-    const { geometry } = result
+    const { result } = await this.fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}`)
+
+    if (!result) {
+      throw new Error('No result')
+    }
 
     return {
-      latitude: geometry.location.lat,
-      longitude: geometry.location.lng,
-      latitudeDelta: geometry.viewport.northeast.lat - geometry.viewport.southwest.lat,
-      longitudeDelta: geometry.viewport.northeast.lng - geometry.viewport.southwest.lng
+      latitude: result?.geometry?.location.lat,
+      longitude: result?.geometry?.location.lng,
+      latitudeDelta: result?.geometry?.viewport.northeast.lat - result?.geometry?.viewport.southwest.lat,
+      longitudeDelta: result?.geometry?.viewport.northeast.lng - result?.geometry?.viewport.southwest.lng
     }
   }
 
@@ -82,7 +83,8 @@ export default class GeoSearch {
       throw new Error('No result')
     }
 
-    return await response.json()
+    const json = await response.json()
+    return json
   }
 
   private formatAutoCompleteResponse = (predictions: AutoCompleteResponse[]) => {
