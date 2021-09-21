@@ -45,5 +45,3 @@ const { place } = useGeoSearch(__GOOGLE_API_KEY__)
 
 await place('__PLACE_ID__')
 ```
-
-#
