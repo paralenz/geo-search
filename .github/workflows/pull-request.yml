@@ -25,13 +25,4 @@ jobs:
       - uses: paralenz/actions/setup-node@master
       - run: yarn lint
 
-  test:
-    name: Unit testing
-    runs-on: ubuntu-latest
-    needs: [setup]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: paralenz/actions/setup-node@master
-      - run: yarn test
-
     
