@@ -10,6 +10,6 @@ yarn build
 echo "🔖 Creating tag for \"$PACKAGE_VERSION\""
 git add .
 git commit -m "🔖 Bump version /"$PACKAGE_VERSION/""
-git tag $PACKAGE_VERSION 
+git tag "v$PACKAGE_VERSION"
 git push --tags
 git push
