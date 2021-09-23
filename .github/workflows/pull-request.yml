@@ -16,6 +16,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: paralenz/actions/setup-node@master
 
+  gitmoji:
+      name: Verify pull request title
+      runs-on: ubuntu-latest
+      steps:
+          - uses: paralenz/actions/gitmoji@master
+
   lint:
     name: Linting
     runs-on: ubuntu-latest
