@@ -33,7 +33,7 @@ jobs:
   
   release:
     name: Create release
-    needs: [build]
+    needs: [setup, lint, build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
