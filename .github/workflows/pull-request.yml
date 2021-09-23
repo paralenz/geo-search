@@ -25,11 +25,10 @@ jobs:
       - name: Generating typings
         run: | 
           yarn build
-          ls -la -R
-          git status
+      - name: git status
+        run: git status
 
   gitmoji:
-      name: Verify pull request title
       runs-on: ubuntu-latest
       steps:
           - uses: paralenz/actions/gitmoji@master
