@@ -22,16 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: paralenz/actions/setup-node@master
-      - name: Generating typings
-        run: | 
-          yarn build
-      - name: git status
-        run: git status
-
-  gitmoji:
-      runs-on: ubuntu-latest
-      steps:
-          - uses: paralenz/actions/gitmoji@master
+      - run: yarn build
 
   lint:
     name: Linting
