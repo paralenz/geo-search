@@ -6,7 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint .",
-    "build": "tsc --esModuleInterop"
+    "build": "tsc --esModuleInterop",
+    "postversion": "sh ./scripts/post-version.sh",
+    "prepublishOnly": "sh ./scripts/pre-publish.sh"
   },
   "devDependencies": {
     "@paralenz/eslint-config-typescript-react": "^0.0.5",
