@@ -17,6 +17,7 @@ jobs:
       - uses: paralenz/actions/setup-node@master
   
   build:
+    name: Build
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
