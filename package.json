@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "Utility class to easily perform google search",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint .",
     "build": "tsc --esModuleInterop"
@@ -14,6 +15,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
+    
     "node-fetch": "^2.6.1"
   },
   "keywords": [
@@ -33,5 +35,5 @@
   "bugs": {
     "url": "https://github.com/paralenz/geo-search/issues"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
