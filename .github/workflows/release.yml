@@ -43,9 +43,9 @@ jobs:
         uses: Saionaro/extract-package-version@v1.0.6
       - name: Bump version
         run: npm version ${{ steps.extract_version.outputs.version }}
-      # - name: Create tag
-      #   run: git tag v${{ steps.extract_version.outputs.version }}
-      - name: Publish
-        run: npm publish --access public --tag v${{ steps.extract_version.outputs.version }}
+      - name: Create tag
+        run: git tag v${{ steps.extract_version.outputs.version }}
       - name: Push
         run: git push --tags
+      - name: Publish
+        run: npm publish --access public
