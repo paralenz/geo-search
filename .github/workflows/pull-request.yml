@@ -15,6 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: paralenz/actions/setup-node@master
+  
+  build:
+    name: Build
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - run: yarn build
 
   lint:
     name: Linting

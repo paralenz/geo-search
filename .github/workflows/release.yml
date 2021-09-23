@@ -1,0 +1,49 @@
+name: "Create Release"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+
+  build:
+    name: Build
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - run: yarn build
+
+  lint:
+    name: Linting
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - run: yarn lint
+  
+  release:
+    name: Create release
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          title: v${{ steps.extract_version.outputs.version }}
+          automatic_release_tag: v${{ steps.extract_version.outputs.version }}

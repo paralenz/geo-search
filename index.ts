@@ -24,18 +24,72 @@ export type PlaceResponse = {
   latitudeDelta: number
 }
 
+type Coords = {
+  lat: number;
+  lng: number
+}
+
 type Config = {
   language: string
 }
+
 type ApiKey = string
 
 const DEFAULT_CONFIG: Config = {
   language: 'en'
 }
 
+export type PlaceRequestResponse = {
+  result?: {
+    geometry?: {
+      location: Coords,
+      viewport: {
+        northeast: Coords;
+        southwest: Coords;
+      }
+    }
+  }
+}
+
+export type AutoCompleteRequestResponse = {
+  // @see: https://developers.google.cn/maps/documentation/places/web-service/autocomplete#PlaceAutocompletePrediction
+  predictions: Prediction[];
+  // @see: https://developers.google.cn/maps/documentation/places/web-service/autocomplete#PlacesAutocompleteStatus
+  status: 'OK'
+    | 'ZERO_RESULTS'
+    | 'INVALID_REQUEST'
+    | 'OVER_QUERY_LIMIT'
+    | 'REQUEST_DENIED'
+    | 'UNKNOWN_ERROR';
+    error_message?: string;
+    info_messages?: string[];
+}
+
+type PlaceAutocompleteTerm = {
+  length: number;
+  offset: number;
+}
+
+export type Prediction = {
+  description: string;
+  matched_substrings: PlaceAutocompleteTerm[];
+  place_id: string;
+  structured_formatting: {
+    main_text: string;
+    main_text_matched_substrings: PlaceAutocompleteTerm[]
+    secondary_text: string;
+  };
+  terms: PlaceAutocompleteTerm[];
+  types: PlaceAutocompleteTerm;
+  reference?: string;
+}
+
 export const useGeoSearch = (apiKey: ApiKey, config: Config = DEFAULT_CONFIG) => new GeoSearch(apiKey, config)
 
 export default class GeoSearch {
+  autoCompleteUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
+  detailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json'
+
   constructor (
     private readonly apiKey: ApiKey,
     private readonly config: Config = DEFAULT_CONFIG
@@ -45,9 +99,8 @@ export default class GeoSearch {
     if (!input) {
       throw new Error('Missing input')
     }
-
-    // eslint-disable-next-line max-len
-    const response = await this.fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?language=${this.config.language}&input=${input}`)
+    const url = `${this.autoCompleteUrl}?language=${this.config.language}&input=${input}`
+    const response = await this.fetch<AutoCompleteRequestResponse>(url)
 
     return this.formatAutoCompleteResponse(response.predictions)
   }
@@ -57,7 +110,7 @@ export default class GeoSearch {
       throw new Error('Missing placeId')
     }
 
-    const { result } = await this.fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}`)
+    const { result } = await this.fetch<PlaceRequestResponse>(`${this.detailsUrl}?placeid=${placeId}`)
 
     if (!result) {
       throw new Error('No result')
@@ -71,8 +124,7 @@ export default class GeoSearch {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private fetch = async (url: string): Promise<any> => {
+  private fetch = async <T = unknown>(url: string): Promise<T> => {
     if (!this.apiKey) {
       throw new Error('Missing apiKey')
     }
