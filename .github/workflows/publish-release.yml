@@ -19,8 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: paralenz/actions/setup-node@master
-      - name: Run tests
-        run: yarn test
+      - name: Run linting
+        run: yarn lint
 
   build:
     name: Build
