@@ -136,7 +136,7 @@ export default class GeoSearch {
     }
 
     const json = await response.json()
-    return json as T
+    return json
   }
 
   private formatAutoCompleteResponse = (predictions: AutoCompleteResponse[]) => {
