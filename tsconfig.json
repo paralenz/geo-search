@@ -9,18 +9,27 @@
         "noEmit": false,
         "downlevelIteration": true,
         "experimentalDecorators": true,
-        "inlineSourceMap": true,
         "resolveJsonModule": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceRoot": "./src/",
+        "inlineSourceMap": true,
+        // "rootDir": "./src/",
         "lib": [
-            "esnext"
+            "esnext",
+            "ES2021"
         ],
         "moduleResolution": "node",
     },
     "include": [
-        "index.ts"
+        "**.ts"
     ],
     "exclude": [
         "node_modules/**",
         "**/__tests__/*"
     ]
 }
+
+
+    
+    
