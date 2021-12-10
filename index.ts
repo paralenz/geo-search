@@ -116,11 +116,19 @@ export default class GeoSearch {
       throw new Error('No result')
     }
 
+    const northeastLat = result?.geometry?.viewport.northeast.lat
+    const southwestLat = result?.geometry?.viewport.southwest.lat
+
+    const northeastLng = result?.geometry?.viewport.northeast.lng
+    const southwestLng = result?.geometry?.viewport.southwest.lng
+
+    const comp = southwestLng > northeastLng ? 360 : 0
+
     return {
       latitude: result?.geometry?.location.lat,
       longitude: result?.geometry?.location.lng,
-      latitudeDelta: result?.geometry?.viewport.northeast.lat - result?.geometry?.viewport.southwest.lat,
-      longitudeDelta: result?.geometry?.viewport.northeast.lng - result?.geometry?.viewport.southwest.lng
+      latitudeDelta: northeastLat - southwestLat,
+      longitudeDelta: northeastLng - (southwestLng - comp)
     }
   }
 
