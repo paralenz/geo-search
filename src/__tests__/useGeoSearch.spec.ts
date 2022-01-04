@@ -1,4 +1,4 @@
-import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './spec-helper/config.spec-helper'
+import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './__helpers__/config.spec-helper'
 import { useGeoSearch } from '../useGeoSearch'
 
 describe('useGeoSearch', () => {

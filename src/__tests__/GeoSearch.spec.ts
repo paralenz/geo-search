@@ -1,5 +1,5 @@
 import { GeoSearch } from '../GeoSearch'
-import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './spec-helper/config.spec-helper'
+import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './__helpers__/config.spec-helper'
 
 const instance = new GeoSearch('123456')
 
@@ -18,7 +18,7 @@ describe('GeoSearch', () => {
         .catch(err => expect(err.message).toEqual('Missing input'))
     })
 
-    test.todo('should call the correct url')
+    it.todo('should call the correct url')
 
     it.todo('should invoke `this.formatAutoCompleteResponse`')
   })
