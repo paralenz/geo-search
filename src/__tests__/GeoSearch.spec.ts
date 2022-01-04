@@ -1,5 +1,5 @@
-import { GeoSearch } from './GeoSearch'
-import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './config.spec-helper'
+import { GeoSearch } from '../GeoSearch'
+import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './spec-helper/config.spec-helper'
 
 const instance = new GeoSearch('123456')
 
@@ -18,26 +18,25 @@ describe('GeoSearch', () => {
         .catch(err => expect(err.message).toEqual('Missing input'))
     })
 
-    it.skip('should call the correct url', () => {
-    })
+    test.todo('should call the correct url')
 
-    it.skip('should invoke `this.formatAutoCompleteResponse`', () => {})
+    it.todo('should invoke `this.formatAutoCompleteResponse`')
   })
 
   describe('place', () => {
-    it.skip('should throw an error if `placeId` is not provided', () => {})
+    it.todo('should throw an error if `placeId` is not provided')
 
-    it.skip('should call the correct url', () => {})
+    it.todo('should call the correct url')
 
-    it.skip('should return an object with `longitude, latitude, latitudeDelta, longitudeDelta`', () => {})
+    it.todo('should return an object with `longitude, latitude, latitudeDelta, longitudeDelta`',)
   })
 
   describe('calculateDeltas', () => {
-    it.skip('should subtract viewport.ne.lat from viewport.sw.lat', () => {})
+    it.todo('should subtract viewport.ne.lat from viewport.sw.lat')
 
-    it.skip('should subtract viewport.ne.lng from viewport.sw.lng', () => {})
+    it.todo('should subtract viewport.ne.lng from viewport.sw.lng')
 
-    it.skip('should return an object with `longitudeDelta` and `latitudeDelta`', () => {})
+    it.todo('should return an object with `longitudeDelta` and `latitudeDelta`')
   })
 
   describe('fetch', () => {
@@ -51,11 +50,11 @@ describe('GeoSearch', () => {
         .catch(err => expect(err.message).toEqual('Missing apiKey'))
     })
 
-    it.skip('should call the correct url', () => {})
+    it.todo('should call the correct url')
 
-    it.skip('should throw an Error if status is not `OK`', () => {})
+    it.todo('should throw an Error if status is not `OK`')
 
-    it.skip('should return the response in JSON format', () => {})
+    it.todo('should return the response in JSON format')
   })
 
   describe('formatAutoCompleteResponse', () => {

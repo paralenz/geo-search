@@ -1,4 +1,4 @@
-import { DEFAULT_CONFIG, OK } from './constants'
+import { DEFAULT_CONFIG, OK } from '../constants'
 
 describe('constants', () => {
   describe('OK', () => {

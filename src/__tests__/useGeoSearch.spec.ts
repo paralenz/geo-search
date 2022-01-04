@@ -1,5 +1,5 @@
-import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './config.spec-helper'
-import { useGeoSearch } from './useGeoSearch'
+import { testApiKey, testCustomConfig, testDefaultConfig, testUrls } from './spec-helper/config.spec-helper'
+import { useGeoSearch } from '../useGeoSearch'
 
 describe('useGeoSearch', () => {
   testApiKey(useGeoSearch('123456'))

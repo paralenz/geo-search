@@ -1,5 +1,5 @@
-import { ApiKey, GeoSearchConfig } from '.'
-import { DEFAULT_CONFIG } from './constants'
+import { ApiKey, GeoSearchConfig } from '../../index'
+import { DEFAULT_CONFIG } from '../../constants'
 
 export const testApiKey = (instance: {apiKey: ApiKey}) => {
   it('[apiKey]: should define this.apiKey', () => {
