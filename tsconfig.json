@@ -14,7 +14,6 @@
         "preserveConstEnums": true,
         "sourceRoot": "./src/",
         "inlineSourceMap": true,
-        // "rootDir": "./src/",
         "lib": [
             "esnext",
             "ES2021"
@@ -22,11 +21,16 @@
         "moduleResolution": "node",
     },
     "include": [
-        "**.ts"
+        "index.ts",
+        "src/*.ts"
     ],
     "exclude": [
         "node_modules/**",
-        "**/__tests__/*"
+        "**/*.spec.*",
+        "**/*.test.*",
+        "**/*.spec*.*",
+        "**/*.test*.*",
+        "dist"
     ]
 }
 

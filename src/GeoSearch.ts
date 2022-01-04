@@ -6,17 +6,28 @@ import {
 } from '.'
 import { DEFAULT_CONFIG, OK } from './constants'
 
-export default class GeoSearch {
-  autoCompleteUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
-  detailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json'
+export interface IGeoSearch {
+  apiKey: ApiKey
+  config: GeoSearchConfig
+  autoComplete: (input: string) => Promise<SearchResult[]>
+  place: (placeId: string) => Promise<PlaceResponse>,
+}
+export class GeoSearch implements IGeoSearch {
+  readonly autoCompleteUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
+  readonly detailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json'
+  apiKey: ApiKey
+  config: GeoSearchConfig
 
   constructor (
-    private readonly apiKey: ApiKey,
-    private readonly config: GeoSearchConfig = DEFAULT_CONFIG
-  ) {}
+    apiKey: ApiKey,
+    config: GeoSearchConfig = DEFAULT_CONFIG
+  ) {
+    this.apiKey = apiKey
+    this.config = config
+  }
 
   autoComplete = async (input: string): Promise<SearchResult[]> => {
-    if (!input) {
+    if (!input && input.length === 0) {
       throw new Error('Missing input')
     }
     const url = `${this.autoCompleteUrl}?language=${this.config.language}&input=${input}`
@@ -29,8 +40,8 @@ export default class GeoSearch {
     if (!placeId) {
       throw new Error('Missing placeId')
     }
-
-    const { result } = await this.fetch<PlaceRequestResponse>(`${this.detailsUrl}?placeid=${placeId}`)
+    const url = `${this.detailsUrl}?placeid=${placeId}`
+    const { result } = await this.fetch<PlaceRequestResponse>(url)
 
     if (!result) {
       throw new Error('No result')
@@ -39,12 +50,18 @@ export default class GeoSearch {
     return {
       latitude: result?.geometry?.location.lat,
       longitude: result?.geometry?.location.lng,
-      latitudeDelta: result?.geometry?.viewport.northeast.lat - result?.geometry?.viewport.southwest.lat,
-      longitudeDelta: result?.geometry?.viewport.northeast.lng - result?.geometry?.viewport.southwest.lng
+      ...this.calculateDeltas(result?.geometry)
     }
   }
 
-  private fetch = async <T = unknown>(url: string): Promise<T> => {
+  calculateDeltas = (geometry: PlaceRequestResponse['result']['geometry']) => {
+    return {
+      latitudeDelta: geometry?.viewport.northeast.lat - geometry?.viewport.southwest.lat,
+      longitudeDelta: geometry?.viewport.northeast.lng - geometry?.viewport.southwest.lng
+    }
+  }
+
+  fetch = async <T = unknown>(url: string): Promise<T> => {
     if (!this.apiKey) {
       throw new Error('Missing apiKey')
     }
@@ -59,11 +76,15 @@ export default class GeoSearch {
     return json
   }
 
-  private formatAutoCompleteResponse = (predictions: AutoCompleteResponse[]) => {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    return predictions.map(({ structured_formatting, place_id }: AutoCompleteResponse) => ({
-      mainText: structured_formatting.main_text,
-      secondaryText: structured_formatting.secondary_text,
+  formatAutoCompleteResponse = (predictions: AutoCompleteResponse[]) => {
+    return predictions.map(({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      structured_formatting: { main_text, secondary_text },
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      place_id
+    }: AutoCompleteResponse) => ({
+      mainText: main_text,
+      secondaryText: secondary_text,
       placeId: place_id
     }))
   }

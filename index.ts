@@ -1,4 +1,6 @@
-export { default as GeoSearch } from './src/GeoSearch'
+import { GeoSearch } from './src/GeoSearch'
+export default GeoSearch
+
 export { useGeoSearch } from './src/useGeoSearch'
 export {
   ApiKey, AutoCompleteRequestResponse, AutoCompleteResponse, Coords, GeoSearchConfig, PlaceAutocompleteTerm,
