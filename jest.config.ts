@@ -5,19 +5,14 @@ const config: Config.InitialOptions = {
   verbose: true,
   preset: 'ts-jest',
   testEnvironment: 'node',
-  transform: {
-    '\\.(ts)$': 'ts-jest'
-  },
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.jest.json',
-      isolatedModules: true
-    }
-  },
+  logHeapUsage: true,
   testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts)$',
   modulePathIgnorePatterns: [
     '<rootDir>/src/__tests__/__helpers__'
   ],
+  testPathIgnorePatterns: [
+    'dist'
+  ]
 };
 
 export default config;

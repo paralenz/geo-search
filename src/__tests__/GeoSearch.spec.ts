@@ -58,19 +58,22 @@ describe('GeoSearch', () => {
   })
 
   describe('formatAutoCompleteResponse', () => {
-    const responses = instance.formatAutoCompleteResponse([{
+    const responses = instance.formatAutoCompleteResponse([
+      {
       place_id: 'p-1',
       structured_formatting: {
         main_text: 'Main Text 1',
         secondary_text: 'Secondary Text 1'
       }
-    }, {
+    },
+    {
       place_id: 'p-2',
       structured_formatting: {
         main_text: 'Main Text 2',
         secondary_text: 'Secondary Text 2'
       }
-    }])
+    }
+  ])
     it('should transofrm prediction[0].structured_formatting.main_text to mainText', () => {
       expect(responses[0].mainText).toBeDefined()
       expect(responses[0].mainText).toBe('Main Text 1')

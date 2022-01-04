@@ -1,5 +1,6 @@
 { 
     "extends": "@paralenz/eslint-config-typescript-react",
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "ecmaVersion": "latest"
     }

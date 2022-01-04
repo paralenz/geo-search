@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "tsc --esModuleInterop",
-    "test": "jest --testPathIgnorePatterns=dist"
+    "test": "jest"
   },
   "dependencies": {
     "node-fetch": "^2.6.1"
