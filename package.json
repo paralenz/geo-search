@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "eslint .",
-    "build": "tsc --esModuleInterop",
+    "lint": "eslint --ext .ts",
+    "build": "tsc --esModuleInterop -p tsconfig.build.json",
     "test": "jest"
   },
   "dependencies": {
@@ -16,7 +16,7 @@
     "@babel/plugin-transform-runtime": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
-    "@paralenz/eslint-config-typescript-react": "^1.0.3",
+    "@paralenz/eslint-config-typescript-react": "^0.0.5",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.7",
     "@types/node-fetch": "^2.5.10",

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "target": "ESNext",
-        "module": "CommonJS",
+        // "target": "ESNext",
+        "module": "ES2020",
         "declaration": true,
         "outDir": "./dist",
         "allowSyntheticDefaultImports": true,
@@ -22,14 +22,11 @@
     },
     "include": [
         "index.ts",
-        "src/*.ts"
+        "src/*.ts",
+        ".eslintrc.js",
     ],
     "exclude": [
         "node_modules/**",
-        "**/*.spec.*",
-        "**/*.test.*",
-        "**/*.spec*.*",
-        "**/*.test*.*",
         "dist"
     ]
 }
