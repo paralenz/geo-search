@@ -1,36 +1,23 @@
 {
     "compilerOptions": {
-        // "target": "ESNext",
-        "module": "ES2020",
-        "declaration": true,
-        "outDir": "./dist",
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "noEmit": false,
-        "downlevelIteration": true,
-        "experimentalDecorators": true,
-        "resolveJsonModule": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceRoot": "./src/",
-        "inlineSourceMap": true,
-        "lib": [
-            "esnext",
-            "ES2021"
-        ],
-        "moduleResolution": "node",
+    "jsx": "react",
+    "target": "ES6",
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
     },
     "include": [
-        "index.ts",
-        "src/*.ts",
-        ".eslintrc.js",
+        "src/**/*"
     ],
     "exclude": [
-        "node_modules/**",
-        "dist"
+        "**/*.spec.*",
+        "**/*.test.*"
     ]
 }
-
-
-    
-    

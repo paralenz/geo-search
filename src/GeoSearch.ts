@@ -28,7 +28,7 @@ export class GeoSearch implements IGeoSearch {
 
   autoComplete = async (input: string): Promise<SearchResult[]> => {
     if (!input && input.length === 0) {
-      throw new Error("Missing input")
+      throw new Error('Missing input')
     }
     const url = `${this.autoCompleteUrl}?language=${this.config.language}&input=${input}`
     const response = await this.fetch<AutoCompleteRequestResponse>(url)

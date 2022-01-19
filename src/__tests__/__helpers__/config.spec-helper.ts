@@ -25,7 +25,7 @@ export const testCustomConfig = (instance: {apiKey: ApiKey, config: GeoSearchCon
   })
 }
 
-export const testUrls = (instance) => {
+export const testUrls = (instance: any) => {
   it('[urls]: should define this.autoCompleteUrl', () => {
     expect(instance.autoCompleteUrl).toBeDefined()
   })

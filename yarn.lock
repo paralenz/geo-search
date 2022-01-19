@@ -1323,10 +1323,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@paralenz/eslint-config-typescript-react@^1.0.3":
-  version "1.0.4"
-  resolved "https://npm.pkg.github.com/download/@paralenz/eslint-config-typescript-react/1.0.4/6f54665777b6f5e35b1d1df81d04b280bb748f734b2b9bf2714c2823f6771fa6#28fde04bd07e3dfad90fc3bffdd203e863bbab5d"
-  integrity sha512-JMVljTSlDof2+cpXAqDD757HiWAVDrZam4Wh1czHCYEIiBVQTkDxT53fg2/nK6C/8Rbvb7QlDJFPljOmJd6PnA==
+"@paralenz/eslint-config-typescript-react@^1.0.5":
+  version "1.0.5"
+  resolved "https://npm.pkg.github.com/download/@paralenz/eslint-config-typescript-react/1.0.5/5877b0439f300b46ddb66f90aa413de4cbced7ffd4a483aad4e392c80ed63878#9a3ecbb731470b4850e80552591f4a5545d0025a"
+  integrity sha512-mFf3FnM5enl34MnPHy064tENqfO5dhZfwfhPymAp605ShCkJhkDXYCTVu327HjGdUsiojmzDjvL7v/+9BUfjCA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.3.0"
     "@typescript-eslint/parser" "^5.3.0"

@@ -44,12 +44,6 @@ describe('GeoSearch', () => {
       expect(instance.fetch).toBeDefined()
     })
 
-    it('should throw an error if this.apiKey is not defined', () => {
-      instance.apiKey = undefined
-      instance.fetch('no-url')
-        .catch(err => expect(err.message).toEqual('Missing apiKey'))
-    })
-
     it.todo('should call the correct url')
 
     it.todo('should throw an Error if status is not `OK`')

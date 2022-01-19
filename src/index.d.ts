@@ -35,8 +35,8 @@ export type GeoSearchConfig = {
 export type ApiKey = string
 
 export type PlaceRequestResponse = {
-    result?: {
-      geometry?: {
+    result: {
+      geometry: {
         location: Coords,
         viewport: {
           northeast: Coords;
