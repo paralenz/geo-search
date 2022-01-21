@@ -9,8 +9,6 @@ updates:
     directory: /
     schedule:
       interval: daily
-    reviewers:
-      - arelstone
     labels:
       - dependencies
       - javascript
@@ -21,8 +19,6 @@ updates:
     directory: /
     schedule:
       interval: daily
-    reviewers:
-      - arelstone
     labels:
       - dependencies
       - action
