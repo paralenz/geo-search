@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import {
   ApiKey, AutoCompleteRequestResponse, AutoCompleteResponse, GeoSearchConfig, PlaceRequestResponse,
   PlaceResponse, SearchResult
-} from '.'
+} from './types'
 import { DEFAULT_CONFIG, OK } from './constants'
 
 export interface IGeoSearch {

@@ -1,4 +1,4 @@
-import { ApiKey, GeoSearchConfig } from '.'
+import { ApiKey, GeoSearchConfig } from './types'
 import { DEFAULT_CONFIG } from './constants'
 import { GeoSearch, IGeoSearch } from './GeoSearch'
 
