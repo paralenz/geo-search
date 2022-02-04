@@ -47,18 +47,28 @@ export class GeoSearch implements IGeoSearch {
       throw new Error('No result')
     }
 
+    return this.coordinates(result.geometry)
+  }
+
+  coordinates = ({ location, viewport }: PlaceRequestResponse['result']['geometry']) => {
     return {
-      latitude: result?.geometry?.location.lat,
-      longitude: result?.geometry?.location.lng,
-      ...this.calculateDeltas(result?.geometry)
+      latitude: location.lat,
+      longitude: location.lng,
+      ...this.calculateDeltas(viewport)
     }
   }
 
-  calculateDeltas = (geometry: PlaceRequestResponse['result']['geometry']) => {
+  calculateDeltas = ({ northeast, southwest }: PlaceRequestResponse['result']['geometry']['viewport']) => {
     return {
-      latitudeDelta: geometry?.viewport.northeast.lat - geometry?.viewport.southwest.lat,
-      longitudeDelta: geometry?.viewport.northeast.lng - geometry?.viewport.southwest.lng
+      latitudeDelta: northeast.lat - southwest.lat,
+      longitudeDelta: northeast.lng - (southwest.lng - this.deltaCompensation({ northeast, southwest }))
     }
+  }
+
+  deltaCompensation = ({ northeast, southwest }: PlaceRequestResponse['result']['geometry']['viewport']): number => {
+    return southwest.lng > northeast.lng
+      ? 360
+      : 0
   }
 
   fetch = async <T = unknown>(url: string): Promise<T> => {

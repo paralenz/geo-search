@@ -31,13 +31,105 @@ describe('GeoSearch', () => {
     it.todo('should return an object with `longitude, latitude, latitudeDelta, longitudeDelta`',)
   })
 
+  describe('coodrinates', () => {
+    it('should return coordinates for Amalienborg', () => {
+      const geometry = {
+        location: { lat: 55.6840588, lng: 12.5930201 },
+        viewport: {
+            northeast: { lat: 55.6854331, lng: 12.5961361 },
+            southwest: { lat: 55.68239509999999, lng: 12.5902225 }
+        }
+      }
+      const expected = {
+        latitude: 55.6840588,
+        longitude: 12.5930201,
+        latitudeDelta: 0.0030380000000107543,
+        longitudeDelta: 0.005913600000001296
+      }
+      expect(instance.coordinates(geometry)).toEqual(expected)
+    });
+
+    it('should return coordinates for Russley Golf Club and Function Centre in New Zealand', () => {
+      const geometry = {
+        location: { lat: -43.495388, lng: 172.5560607 },
+        viewport: {
+          northeast: {
+            lat: -43.4943529197085,
+            lng: 172.5571392802915
+        },
+        southwest: {
+            lat: -43.4970508802915,
+            lng: 172.5544413197085
+        }
+        }
+      }
+      const expected =   {
+        latitude: -43.495388,
+        longitude: 172.5560607,
+        latitudeDelta: 0.00269796058300642,
+        longitudeDelta: 0.0026979605829922093
+      }
+    
+      expect(instance.coordinates(geometry)).toEqual(expected)
+    });
+    
+    it('should return coordinates for Lucaya Beach on Grand Bahama', () => {
+      const geometry = {
+        location: {
+            lat: 26.5095771,
+            lng: -78.6417355
+        },
+        viewport: {
+            northeast: {
+                lat: 26.51310155302695,
+                lng: -78.63598467128065
+            },
+            southwest: {
+                lat: 26.5041461387956,
+                lng: -78.6479901551412
+            }
+        }
+    }
+      const expected =   {
+        latitude: 26.5095771,
+        latitudeDelta: 0.008955414231348158,
+        longitude: -78.6417355,
+        longitudeDelta: 0.012005483860548338,
+      }
+    
+      expect(instance.coordinates(geometry)).toEqual(expected)
+    });
+  });
+
   describe('calculateDeltas', () => {
-    it.todo('should subtract viewport.ne.lat from viewport.sw.lat')
-
-    it.todo('should subtract viewport.ne.lng from viewport.sw.lng')
-
-    it.todo('should return an object with `longitudeDelta` and `latitudeDelta`')
+    it('should return correct delta values', () => {
+      const viewport = {
+        northeast: { lat: 55.6854331, lng: 12.5961361 },
+        southwest: { lat: 55.68239509999999, lng: 12.5902225 }
+      }
+      const expected = {
+        latitudeDelta: 0.0030380000000107543,
+        longitudeDelta: 0.005913600000001296
+      }
+      expect(instance.calculateDeltas(viewport)).toEqual(expected)
+    })
   })
+
+  describe('deltaCompensation', () => {
+    it('should return 360', () => {
+      expect(instance.deltaCompensation({
+        southwest: { lat: 0, lng: 55 },
+        northeast: { lat: 0, lng: 12 },
+      })).toEqual(360)      
+    });
+    
+    it('should return 0', () => {
+      expect(instance.deltaCompensation({
+        northeast: { lat: 0, lng: 55 },
+        southwest: { lat: 0, lng: 12 },
+      })).toEqual(0)
+    });
+  });
 
   describe('fetch', () => {
     it('should be defined', () => {
