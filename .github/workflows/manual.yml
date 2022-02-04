@@ -1,0 +1,43 @@
+name: Publish
+on:
+  workflow_dispatch
+
+jobs:
+  manual:
+    name: Manual
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: paralenz/actions/setup-node@master
+        with:
+          node-version: '14'
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
+          registry-url: https://npm.pkg.github.com/
+      
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      
+      - name: Check package version
+        uses: PostHog/check-package-version@v2
+        id: check_package_version
+
+      
+      # - run: yarn lint
+      
+      # - run: yarn test
+      
+      # - run: yarn build
+
+      - name: Skip publish
+        if: ${{steps.cpv.outputs.is-new-version == 'false' }}
+        run: |
+          echo "::error Release will not be published. The version number has not been bumped"
+          echo "Committed version: ${{ steps.check_package_version.outputs.committed-version }}"
+          echo "Published version: ${{ steps.check_package_version.outputs.published-version }}"
+          echo "Is new version: ${{ steps.check_package_version.outputs.is-new-version }}"
+          echo "Is the vesion from package.json: ${{ steps.extract_version.outputs.version }}"
+
+      - name: Publish
+        if: ${{steps.cpv.outputs.is-new-version == 'true' }}
+        run: yarn publish
