@@ -1452,10 +1452,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@paralenz/eslint-config-typescript-react@^1.0.5":
-  version "1.0.5"
-  resolved "https://npm.pkg.github.com/download/@paralenz/eslint-config-typescript-react/1.0.5/5877b0439f300b46ddb66f90aa413de4cbced7ffd4a483aad4e392c80ed63878#9a3ecbb731470b4850e80552591f4a5545d0025a"
-  integrity sha512-mFf3FnM5enl34MnPHy064tENqfO5dhZfwfhPymAp605ShCkJhkDXYCTVu327HjGdUsiojmzDjvL7v/+9BUfjCA==
+"@paralenz/eslint-config-typescript-react@^1.0.7":
+  version "1.0.7"
+  resolved "https://npm.pkg.github.com/download/@paralenz/eslint-config-typescript-react/1.0.7/b761c5cbc1ce82336db7c38d606e050e84fe95a6f58f0db312e79bf5848519de#ca288f1f165963e6a71f131e29b96d6a5a4197e0"
+  integrity sha512-ZVuCPlcrsdfHb13LvLwWnn87e2Yg95gYz4HaIKjCZZZeS1nvFDKc2+sHZcMn41TazWFHNBX7zcD6jsF7oD/aZA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.3.0"
     "@typescript-eslint/parser" "^5.3.0"
@@ -1658,7 +1658,7 @@
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/parser@^5.13.0", "@typescript-eslint/parser@^5.3.0":
+"@typescript-eslint/parser@^5.3.0":
   version "5.13.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.13.0.tgz#0394ed8f2f849273c0bf4b811994d177112ced5c"
   integrity sha512-GdrU4GvBE29tm2RqWOM0P5QfCtgCyN4hXICj/X9ibKED16136l9ZpoJvCL5pSKtmJzA+NRDzQ312wWMejCVVfg==
@@ -5021,9 +5021,9 @@ ts-jest@^27.1.3:
     yargs-parser "20.x"
 
 ts-node@^10.6.0:
-  version "10.6.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.6.0.tgz#c3f4195d5173ce3affdc8f2fd2e9a7ac8de5376a"
-  integrity sha512-CJen6+dfOXolxudBQXnVjRVvYTmTWbyz7cn+xq2XTsvnaXbHqr4gXSCNbS2Jj8yTZMuGwUoBESLaOkLascVVvg==
+  version "10.7.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.7.0.tgz#35d503d0fab3e2baa672a0e94f4b40653c2463f5"
+  integrity sha512-TbIGS4xgJoX2i3do417KSaep1uRAW/Lu+WAL2doDHC0D6ummjirVOXU5/7aiZotbQ5p1Zp9tP7U6cYhA0O7M8A==
   dependencies:
     "@cspotcode/source-map-support" "0.7.0"
     "@tsconfig/node10" "^1.0.7"
