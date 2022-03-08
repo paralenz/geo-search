@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export type SearchResult = {
     mainText: string;
     secondaryText: string;
@@ -5,14 +6,10 @@ export type SearchResult = {
   }
 
 export type AutoCompleteResponse = {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   structured_formatting: {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     main_text: string
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     secondary_text: string
   }
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   place_id: string
   };
 
@@ -56,9 +53,7 @@ export type AutoCompleteRequestResponse = {
     | 'OVER_QUERY_LIMIT'
     | 'REQUEST_DENIED'
     | 'UNKNOWN_ERROR';
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     error_message?: string;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     info_messages?: string[];
   }
 
@@ -69,17 +64,11 @@ export type AutoCompleteRequestResponse = {
 
 export type Prediction = {
   description: string;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   matched_substrings: PlaceAutocompleteTerm[];
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   place_id: string;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   structured_formatting: {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     main_text: string;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     main_text_matched_substrings: PlaceAutocompleteTerm[]
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     secondary_text: string;
   };
   terms: PlaceAutocompleteTerm[];
