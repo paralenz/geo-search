@@ -1,4 +1,4 @@
-name: Publish new release
+name: Push to master
 on:
   push:
     branches:
@@ -6,7 +6,6 @@ on:
 
 jobs:
   setup:
-    name: Setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,5 +23,7 @@ jobs:
           default_author: github_actions
           add: .
           message: 🏷️ Generate typings
+      - name: Tag and Release
+        uses: paralenz/actions/make-release@v1.2.3
       - name: Publish package
         run: npm publish --access public
