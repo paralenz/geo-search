@@ -24,19 +24,3 @@ export const testCustomConfig = (instance: {apiKey: ApiKey, config: GeoSearchCon
     expect(instance.config).toEqual(config)
   })
 }
-
-export const testUrls = (instance: any) => {
-  it('[urls]: should define this.autoCompleteUrl', () => {
-    expect(instance.autoCompleteUrl).toBeDefined()
-  })
-  it('[urls]: should define this.autoCompleteUrl', () => {
-    expect(instance.autoCompleteUrl).toEqual('https://maps.googleapis.com/maps/api/place/autocomplete/json')
-  })
-
-  it('[urls]: should define this.detailsUrl', () => {
-    expect(instance.detailsUrl).toBeDefined()
-  })
-  it('[urls]: should define this.autoCompleteUrl', () => {
-    expect(instance.detailsUrl).toEqual('https://maps.googleapis.com/maps/api/place/details/json')
-  })
-}

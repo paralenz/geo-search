@@ -1,10 +1,9 @@
 import fetch from 'node-fetch'
-
+import { DEFAULT_CONFIG, HTTP_STATUS_OK, AUTO_COMPLETE_URL, PLACE_DETAILS_URL } from './constants'
 import {
   ApiKey, AutoCompleteRequestResponse, AutoCompleteResponse, GeoSearchConfig, PlaceRequestResponse,
   PlaceResponse, SearchResult
 } from './types'
-import { DEFAULT_CONFIG, OK } from './constants'
 
 export interface IGeoSearch {
   apiKey: ApiKey
@@ -13,8 +12,6 @@ export interface IGeoSearch {
   place: (placeId: string) => Promise<PlaceResponse>,
 }
 export class GeoSearch implements IGeoSearch {
-  readonly autoCompleteUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
-  readonly detailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json'
   apiKey: ApiKey
   config: GeoSearchConfig
 
@@ -30,8 +27,10 @@ export class GeoSearch implements IGeoSearch {
     if (!input && input.length === 0) {
       throw new Error('Missing input')
     }
-    const url = `${this.autoCompleteUrl}?language=${this.config.language}&input=${input}`
-    const response = await this.fetch<AutoCompleteRequestResponse>(url)
+
+    const response = await this.fetch<AutoCompleteRequestResponse>(
+      `${AUTO_COMPLETE_URL}?language=${this.config.language}&input=${input}`
+    )
 
     return this.formatAutoCompleteResponse(response.predictions)
   }
@@ -40,8 +39,8 @@ export class GeoSearch implements IGeoSearch {
     if (!placeId) {
       throw new Error('Missing placeId')
     }
-    const url = `${this.detailsUrl}?placeid=${placeId}`
-    const { result } = await this.fetch<PlaceRequestResponse>(url)
+
+    const { result } = await this.fetch<PlaceRequestResponse>(`${PLACE_DETAILS_URL}?placeid=${placeId}`)
 
     if (!result) {
       throw new Error('No result')
@@ -78,7 +77,7 @@ export class GeoSearch implements IGeoSearch {
 
     const response = await fetch(`${url}&key=${this.apiKey}`)
 
-    if (response?.status !== OK) {
+    if (response?.status !== HTTP_STATUS_OK) {
       throw new Error('No result')
     }
 
@@ -88,9 +87,7 @@ export class GeoSearch implements IGeoSearch {
 
   formatAutoCompleteResponse = (predictions: AutoCompleteResponse[]) => {
     return predictions.map(({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       structured_formatting: { main_text, secondary_text },
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       place_id
     }: AutoCompleteResponse) => ({
       mainText: main_text,
