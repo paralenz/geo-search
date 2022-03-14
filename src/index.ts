@@ -6,3 +6,5 @@ export {
   ApiKey, AutoCompleteRequestResponse, AutoCompleteResponse, Coords, GeoSearchConfig,
   PlaceRequestResponse, PlaceResponse, Prediction, SearchResult
 } from './types'
+
+export * from './helpers'
