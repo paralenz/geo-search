@@ -23,7 +23,7 @@ jobs:
           default_author: github_actions
           add: .
           message: 🏷️ Generate typings
-      - name: Tag and Release
-        uses: paralenz/actions/make-release@v2.1.1
       - name: Publish package
         run: npm publish --access public
+      - name: Tag and Release
+        uses: paralenz/actions/make-release@v1.2.3
