@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@types/node": "^16.11.26",
+    "@types/node": "^16.11.27",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
