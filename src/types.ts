@@ -20,6 +20,11 @@ export type PlaceResponse = {
     latitudeDelta: number
   }
 
+export type RegionFrom = {
+    latitude: number
+    longitude: number
+  }
+
 export type Coords = {
     lat: number;
     lng: number
