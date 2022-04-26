@@ -3,7 +3,7 @@ export type SearchResult = {
     mainText: string;
     secondaryText: string;
     placeId: string;
-  }
+}
 
 export type AutoCompleteResponse = {
   structured_formatting: {
@@ -11,51 +11,57 @@ export type AutoCompleteResponse = {
     secondary_text: string
   }
   place_id: string
-  };
+};
 
 export type PlaceResponse = {
-    longitude: number
-    latitude: number
-    longitudeDelta: number
-    latitudeDelta: number
-  }
+  longitude: number
+  latitude: number
+  longitudeDelta: number
+  latitudeDelta: number
+}
+
+export type RegionFrom = {
+  latitude: number
+  longitude: number
+}
 
 export type Coords = {
-    lat: number;
-    lng: number
-  }
+  lat: number;
+  lng: number
+}
 
 export type GeoSearchConfig = {
-    language: string
-  }
+  language: string
+}
 
 export type ApiKey = string
 
 export type PlaceRequestResponse = {
-    result: {
-      geometry: {
-        location: Coords,
-        viewport: {
-          northeast: Coords;
-          southwest: Coords;
-        }
+  result: {
+    geometry: {
+      location: Coords,
+      viewport: {
+        northeast: Coords;
+        southwest: Coords;
       }
     }
   }
+}
 
 export type AutoCompleteRequestResponse = {
   // @see: https://developers.google.cn/maps/documentation/places/web-service/autocomplete#PlaceAutocompletePrediction
   predictions: Prediction[];
   // @see: https://developers.google.cn/maps/documentation/places/web-service/autocomplete#PlacesAutocompleteStatus
-  status: 'OK'
-    | 'ZERO_RESULTS'
-    | 'INVALID_REQUEST'
-    | 'OVER_QUERY_LIMIT'
-    | 'REQUEST_DENIED'
-    | 'UNKNOWN_ERROR';
-    error_message?: string;
-    info_messages?: string[];
-  }
+  status:
+  | 'OK'
+  | 'ZERO_RESULTS'
+  | 'INVALID_REQUEST'
+  | 'OVER_QUERY_LIMIT'
+  | 'REQUEST_DENIED'
+  | 'UNKNOWN_ERROR';
+  error_message?: string;
+  info_messages?: string[];
+}
 
   type PlaceAutocompleteTerm = {
     length: number;
