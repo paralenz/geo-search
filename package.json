@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.32",
-    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-typescript": "^7.16.7",
     "@types/jest": "^27.4.1",
