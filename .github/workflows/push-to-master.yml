@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: paralenz/actions/setup-node@v2.1.3
+      - uses: paralenz/actions/setup-node@v2.1.4
         with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Run linting
@@ -24,4 +24,4 @@ jobs:
       - name: Publish package
         run: yarn publish
       - name: Tag and Release
-        uses: paralenz/actions/make-release@v2.1.3
+        uses: paralenz/actions/make-release@v2.1.4
