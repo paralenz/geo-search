@@ -1,6 +1,7 @@
 import { CIRCOMFERENCE, ONE_DEFREE_OF_LATITUDE_IN_METERS } from './constants'
+import { RegionFrom } from './types'
 
-export const regionFrom = (longitude: number, latitude: number, distance: number) => {
+export const regionFrom = ({ latitude, longitude }: RegionFrom, distance: number) => {
   const angularDistance = distance / CIRCOMFERENCE
 
   const latitudeDelta = distance / ONE_DEFREE_OF_LATITUDE_IN_METERS
