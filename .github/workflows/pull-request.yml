@@ -7,14 +7,14 @@ jobs:
     name: Ensure that title uses gitmoji
     runs-on: ubuntu-latest
     steps:
-      - uses: paralenz/actions/gitmoji@v2.1.7
+      - uses: paralenz/actions/gitmoji@v2.1.8
 
   setup:
     name: Setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: paralenz/actions/setup-node@v2.1.7
+      - uses: paralenz/actions/setup-node@v2.1.8
   
   build:
     name: Build
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: paralenz/actions/setup-node@v2.1.7
+      - uses: paralenz/actions/setup-node@v2.1.8
       - run: yarn build
 
   lint:
@@ -31,7 +31,7 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v3
-      - uses: paralenz/actions/setup-node@v2.1.7
+      - uses: paralenz/actions/setup-node@v2.1.8
       - run: yarn lint
 
   test:
@@ -40,7 +40,7 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v3
-      - uses: paralenz/actions/setup-node@v2.1.7
+      - uses: paralenz/actions/setup-node@v2.1.8
       - run: yarn test --coverage
 
     
